@@ -47,9 +47,7 @@ export default function Quiz() {
         <div className="text-lg font-semibold">
           Score: {state.score}/10
         </div>
-        <div className={\`text-lg font-semibold \${
-          state.timeLeft <= 10 ? 'text-red-600' : ''
-        }\`}>
+        <div className={state.timeLeft <= 10 ? 'text-lg font-semibold text-red-600' : 'text-lg font-semibold'}>
           Temps: {state.timeLeft}s
         </div>
       </div>
@@ -62,7 +60,7 @@ export default function Quiz() {
           <motion.div
             className="h-2 bg-primary rounded-full"
             initial={{ width: '100%' }}
-            animate={{ width: \`\${(state.timeLeft / 30) * 100}%\` }}
+            animate={{ width: `${(state.timeLeft / 30) * 100}%` }}
             transition={{ duration: 0.5 }}
           />
         </div>
