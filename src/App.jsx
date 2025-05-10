@@ -5,19 +5,23 @@ import Difficulty from './pages/Difficulty'
 import Quiz from './pages/Quiz'
 import Results from './pages/Results'
 import History from './pages/History'
+import BubblesBackground from './components/BubblesBackground'
 
 function App() {
   return (
-    <div className="min-h-screen p-4 md:p-8">
-      <AnimatePresence mode="wait">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/difficulty" element={<Difficulty />} />
-          <Route path="/quiz" element={<Quiz />} />
-          <Route path="/results" element={<Results />} />
-          <Route path="/history" element={<History />} />
-        </Routes>
-      </AnimatePresence>
+    <div className="min-h-screen">
+      <BubblesBackground />
+      <div className="relative z-10 min-h-screen p-4 md:p-8">
+        <AnimatePresence mode="wait">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/difficulty" element={<Difficulty />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/results" element={<Results />} />
+            <Route path="/history" element={<History />} />
+          </Routes>
+        </AnimatePresence>
+      </div>
     </div>
   )
 }
