@@ -43,7 +43,7 @@ export default function Difficulty() {
             key={difficulty.id}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className={\`card w-full flex items-center \${difficulty.color}\`}
+            className={"card w-full flex items-center " + difficulty.color}
             onClick={() => handleDifficultySelect(difficulty.id)}
           >
             <div className="text-4xl mr-4">{difficulty.icon}</div>
