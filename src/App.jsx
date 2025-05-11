@@ -6,6 +6,7 @@ import Quiz from './pages/Quiz'
 import Results from './pages/Results'
 import History from './pages/History'
 import BubblesBackground from './components/BubblesBackground'
+import CustomToaster from './components/Toaster'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <BubblesBackground />
       <div className="relative z-10 min-h-screen p-4 md:p-8">
         <AnimatePresence mode="wait">
+          <CustomToaster />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/difficulty" element={<Difficulty />} />

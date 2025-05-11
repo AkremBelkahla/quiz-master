@@ -6,7 +6,7 @@ import { useState } from 'react'
 
 const difficulties = [
   { 
-    id: 'facile',
+    id: 'easy',
     name: 'Facile',
     icon: '😊',
     color: 'from-green-400 to-green-600',
@@ -14,7 +14,7 @@ const difficulties = [
     animation: 'animate-float'
   },
   {
-    id: 'intermediaire',
+    id: 'medium',
     name: 'Intermédiaire',
     icon: '🤔',
     color: 'from-yellow-400 to-yellow-600',
@@ -22,7 +22,7 @@ const difficulties = [
     animation: 'animate-pulse-slow'
   },
   {
-    id: 'difficile',
+    id: 'hard',
     name: 'Difficile',
     icon: '😰',
     color: 'from-red-400 to-red-600',
@@ -34,15 +34,14 @@ const difficulties = [
 export default function Difficulty() {
   const navigate = useNavigate()
   const { dispatch } = useQuiz()
-  const { startQuiz } = useQuizLogic()
+  const { fetchQuestions } = useQuizLogic()
   const [error, setError] = useState(false)
 
   const handleDifficultySelect = async (difficulty) => {
     try {
       setError(false)
       dispatch({ type: 'SET_DIFFICULTY', payload: difficulty })
-      await startQuiz()
-      navigate('/quiz')
+      await fetchQuestions()
     } catch (err) {
       setError(true)
       console.error('Erreur lors du chargement des questions:', err)
@@ -63,26 +62,16 @@ export default function Difficulty() {
         ← Retour
       </button>
 
-      <motion.h1 
-        className="text-5xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+      <motion.h1
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-4xl font-bold text-center text-blue-600 mb-12"
       >
         Choisissez la difficulté
       </motion.h1>
 
-      {error && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-red-500/20 border border-red-500/50 text-white p-4 rounded-lg mb-6 text-center backdrop-blur-sm"
-        >
-          Erreur lors du chargement des questions. Veuillez réessayer.
-        </motion.div>
-      )}
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* Message d'erreur supprimé car géré par toast */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
         {difficulties.map((difficulty) => (
           <motion.button
             key={difficulty.id}

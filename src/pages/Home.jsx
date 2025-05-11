@@ -31,8 +31,9 @@ export default function Home() {
   const navigate = useNavigate()
   const { dispatch } = useQuiz()
 
-  const handleCategorySelect = (category) => {
-    dispatch({ type: 'SET_CATEGORY', payload: category })
+  const handleCategorySelect = (categoryId) => {
+    console.log('Catégorie sélectionnée:', categoryId)
+    dispatch({ type: 'SET_CATEGORY', payload: categoryId })
     navigate('/difficulty')
   }
 
